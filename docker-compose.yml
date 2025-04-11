@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  productcatalogue:
+    build: ./productcatalogue
+    image: halouani/productcatalogue:latest
+    ports:
+      - "8081:8080"
+
+  stockmanager:
+    build: ./stockmanager
+    image: halouani/stockmanager:latest
+    ports:
+      - "8082:8080"
+
+  shopfront:
+    build: ./shopfront
+    image: halouani/shopfront:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - productcatalogue
+      - stockmanager
