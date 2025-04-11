@@ -11,7 +11,7 @@ import uk.co.danielbryant.djshopping.productcatalogue.resources.ProductResource;
 
 public class ProductServiceApplication extends Application<ProductServiceConfiguration> {
     public static void main(String[] args) throws Exception {
-        new ProductServiceApplication().run(args);
+        new ProductServiceApplication().run(args); 
     }
 
     @Override
