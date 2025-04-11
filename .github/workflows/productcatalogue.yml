@@ -34,4 +34,33 @@ jobs:
 
       - name: Push Docker Images to Docker Hub
         run: docker push halouani/productcatalogue:latest
+
+      - name: Create and Push Dynamic Git Tag
+        if: github.ref == 'refs/heads/master'
+        run: |
+          git fetch --tags
+
+          # Récupère le dernier tag ou initialise à v1.0.0
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0")
+
+          echo "Dernier tag: $LAST_TAG"
+
+          # Extrait la partie numérique 
+          VERSION=${LAST_TAG#v}
+
+          # Incrémente le patch 
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+          PATCH=$((PATCH + 1))
+          NEW_TAG="v$MAJOR.$MINOR.$PATCH"
+
+          echo "Nouveau tag: $NEW_TAG"
+
+          # Configuration Git
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git tag $NEW_TAG
+          git push origin $NEW_TAG
+      
+
           
