@@ -31,6 +31,6 @@ public class ProductServiceApplication extends Application<ProductServiceConfigu
         environment.healthChecks().register("template", healthCheck);
 
         Injector injector = Guice.createInjector();
-        environment.jersey().register(injector.getInstance(ProductResource.class));
+        environment.jersey().register(injector.getInstance(ProductResource.class)); 
     }
 }
