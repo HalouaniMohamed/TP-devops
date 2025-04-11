@@ -15,7 +15,7 @@ public class ShopfrontApplication {
     }
 
     @Bean(name = "stdRestTemplate")
-    public RestTemplate getRestTemplate() {
-        return new RestTemplate();
+    public RestTemplate getRestTemplate()  {
+        return new RestTemplate();   
     }
 }
