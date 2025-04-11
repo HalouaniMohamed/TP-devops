@@ -6,6 +6,10 @@ on:
       - master
     paths:
       - 'productcatalogue/**'
+      
+permissions:
+  contents: write
+    
 
 jobs:
   build-and-deploy:
